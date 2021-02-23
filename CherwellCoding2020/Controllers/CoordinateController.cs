@@ -6,19 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CherwellCoding2020.Controllers
 {
-
+    [Route("/[controller]")]
     [Route("api/[controller]")]
-    public class GeometricController : Controller
+    public class CoordinateController : Controller
     {
+
         [HttpGet]
-        public string Index()
+        public string GetTriangle(int? x, int? y)
         {
-            return "geometric controller";
-        }
-    
-        [HttpGet]
-        public string GetTriangle(int x, int y)
-        {
+            if (!y.HasValue || !x.HasValue) return "X and Y cannot be null."; 
             return "A1"; 
         }
 
