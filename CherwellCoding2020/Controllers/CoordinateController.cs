@@ -13,9 +13,9 @@ namespace CherwellCoding2020.Controllers
     {
 
         [HttpGet]
-        public LinkedList<Point> GetTriangle(char? row, int? column)
+        public List<Point> GetTriangle(char? row, int? column)
         {
-            LinkedList<Point> coordinates = new LinkedList<Point>();
+            List<Point> coordinates = new List<Point>();
 
             if (!row.HasValue || !column.HasValue) return coordinates;
 
@@ -23,29 +23,36 @@ namespace CherwellCoding2020.Controllers
             char rowChar = row.Value; 
 
             Point point1, point2, point3;
-
-            // upper left
-            point1 = new Point((columnInt / 2) * 10, (char.ToUpper(rowChar) - 64) * 10);
-
-            // bottom right
-            point3 = new Point(((columnInt + 1) / 2) * 10, ((char.ToUpper(rowChar) + 1) - 64) * 10);
+            int rowNumber = char.ToUpper(rowChar) - 65; // char A begins at 65
 
             // Odd column number means bottom left triangle 
             if (column % 2 != 0)
             {
+                // upper left
+                point1 = new Point((columnInt / 2) * 10, rowNumber * 10);
+
                 // bottom left point
-                point2 = new Point((columnInt / 2) * 10, ((char.ToUpper(rowChar) + 1) - 64) * 10);
+                point2 = new Point((columnInt / 2) * 10, (rowNumber + 1) * 10);
+
+                // bottom right
+                point3 = new Point(((columnInt + 1) / 2) * 10, (rowNumber + 1) * 10);
+
             }
             else // else upper right triangle
             {
-                // upper left point
-                point2 = new Point(((columnInt + 1 ) / 2) * 10, (char.ToUpper(rowChar) - 64) * 10);
+                // upper left
+                point1 = new Point(((columnInt - 1) / 2) * 10, rowNumber * 10);
 
+                // upper right
+                point2 = new Point((columnInt / 2) * 10, rowNumber * 10);
+
+                // bottom right
+                point3 = new Point((columnInt / 2) * 10, (rowNumber + 1) * 10);
             }
 
-            coordinates.AddLast(point1);
-            coordinates.AddLast(point2);
-            coordinates.AddLast(point3);
+            coordinates.Add(point1);
+            coordinates.Add(point2);
+            coordinates.Add(point3);
 
             return coordinates; 
         }
