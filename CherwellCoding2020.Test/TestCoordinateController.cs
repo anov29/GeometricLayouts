@@ -16,32 +16,25 @@ namespace CherwellCoding2020.Test
             var controller = new CoordinateController();
 
             // odd column
-            List<Point> result = controller.GetTriangle('A', 5);
+            List<Point> result = controller.GetTriangle('F', 1);
 
-            Assert.AreEqual(new Point(20, 0), result[0]); // upper left point
-            Assert.AreEqual(new Point(20, 10), result[1]); // bottom left point
-            Assert.AreEqual(new Point(30, 10), result[2]); // bottom right point 
+            Assert.AreEqual(new Point(0, 0), result[0]); // upper left point
+            Assert.AreEqual(new Point(0, 10), result[1]); // bottom left point
+            Assert.AreEqual(new Point(10, 0), result[2]); // bottom right point 
 
             // even column
-            result = controller.GetTriangle('A', 6);
+            result = controller.GetTriangle('F', 2);
 
-            Assert.AreEqual(new Point(20, 0), result[0]); // upper left point
-            Assert.AreEqual(new Point(30, 0), result[1]); // upper right point
-            Assert.AreEqual(new Point(30, 10), result[2]); // bottom right point 
+            Assert.AreEqual(new Point(10, 10), result[0]); // upper left point
+            Assert.AreEqual(new Point(0, 10), result[1]); // upper right point
+            Assert.AreEqual(new Point(10, 0), result[2]); // bottom right point 
 
-            // 2nd row 
-            result = controller.GetTriangle('B', 1);
+            // 6th row 
+            result = controller.GetTriangle('A', 12);
 
-            Assert.AreEqual(new Point(0, 10), result[0]); // upper left point
-            Assert.AreEqual(new Point(0, 20), result[1]); // bottom right point
-            Assert.AreEqual(new Point(10, 20), result[2]); // bottom right point 
-
-            // 3rd row 
-            result = controller.GetTriangle('c', 6);
-
-            Assert.AreEqual(new Point(20, 20), result[0]); // upper left point
-            Assert.AreEqual(new Point(30, 20), result[1]); // upper right point
-            Assert.AreEqual(new Point(30, 30), result[2]); // bottom right point 
+            Assert.AreEqual(new Point(60, 60), result[0]); // upper left point
+            Assert.AreEqual(new Point(50, 60), result[1]); // bottom right point
+            Assert.AreEqual(new Point(60, 50), result[2]); // bottom right point 
         }
 
     }
