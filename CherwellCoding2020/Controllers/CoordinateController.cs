@@ -12,6 +12,8 @@ namespace CherwellCoding2020.Controllers
     public class CoordinateController : Controller
     {
 
+        private int[] rowMapper = new int[] {6, 5, 4, 3, 2, 1, 0 }; // maps letters to the correct row 
+
         [HttpGet]
         public List<Point> GetTriangle(char? row, int? column)
         {
@@ -23,31 +25,26 @@ namespace CherwellCoding2020.Controllers
             char rowChar = row.Value; 
 
             Point point1, point2, point3;
-            int rowNumber = char.ToUpper(rowChar) - 65; // char A begins at 65
+            int rowIndex = char.ToUpper(rowChar) - 65; // char A begins at 65
 
             // Odd column number means bottom left triangle 
             if (column % 2 != 0)
             {
+                // bottom left 
+                point1 = new Point((columnInt / 2) * 10, rowMapper[(rowIndex + 1)] * 10);
                 // upper left
-                point1 = new Point((columnInt / 2) * 10, rowNumber * 10);
-
-                // bottom left point
-                point2 = new Point((columnInt / 2) * 10, (rowNumber + 1) * 10);
-
+                point2 = new Point((columnInt / 2) * 10, rowMapper[rowIndex] * 10);
                 // bottom right
-                point3 = new Point(((columnInt + 1) / 2) * 10, (rowNumber + 1) * 10);
-
+                point3 = new Point(((columnInt + 1) / 2) * 10, rowMapper[(rowIndex + 1)] * 10);
             }
             else // else upper right triangle
             {
-                // upper left
-                point1 = new Point(((columnInt - 1) / 2) * 10, rowNumber * 10);
-
                 // upper right
-                point2 = new Point((columnInt / 2) * 10, rowNumber * 10);
-
+                point1 = new Point((columnInt / 2) * 10, rowMapper[rowIndex] * 10);
+                // upper left
+                point2 = new Point(((columnInt - 1) / 2) * 10, rowMapper[rowIndex] * 10);
                 // bottom right
-                point3 = new Point((columnInt / 2) * 10, (rowNumber + 1) * 10);
+                point3 = new Point((columnInt / 2) * 10, rowMapper[(rowIndex + 1)] * 10);
             }
 
             coordinates.Add(point1);
