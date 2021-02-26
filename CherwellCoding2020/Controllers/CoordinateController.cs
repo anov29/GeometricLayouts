@@ -27,6 +27,8 @@ namespace CherwellCoding2020.Controllers
             Point point1, point2, point3;
             int rowIndex = char.ToUpper(rowChar) - 65; // char A begins at 65
 
+            if (0 > rowIndex || rowIndex >= rowMapper.Length) { return coordinates; } // check before indexing 
+
             // Odd column number means bottom left triangle 
             if (column % 2 != 0)
             {

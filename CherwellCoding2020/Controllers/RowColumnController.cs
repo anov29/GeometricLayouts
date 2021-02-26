@@ -16,10 +16,14 @@ namespace CherwellCoding2020.Controllers
         [HttpGet]
         public string GetRowColumn(int? V1x, int? V1y, int? V2x, int? V2y, int? V3x, int? V3y)
         {
-            if(!V1x.HasValue || !V1y.HasValue || !V2x.HasValue || !V2y.HasValue || !V3x.HasValue || !V3y.HasValue) return "";
+            if (!V1x.HasValue || !V1y.HasValue || !V2x.HasValue || !V2y.HasValue || !V3x.HasValue || !V3y.HasValue) return "";
 
             // find row 
             // row calculated by Y coordinate using V3, since V3 coordinate shared between both even and odd column triangles 
+
+            int v3Index = V3y.Value / 10;
+            if (0 > v3Index || v3Index >= letterMapper.Length) { return ""; } // check before indexing 
+
             string row = letterMapper[(V3y.Value / 10)];
 
             int column = 0;
