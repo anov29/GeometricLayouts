@@ -15,12 +15,18 @@ namespace CherwellCoding2020.Controllers
     {
 
         [HttpGet]
-        public string GetRowColumn(int? V1x, int? V1y, int? V2x, int? V2y, int? V3x, int? V3y)
+        public IActionResult GetRowColumn(int? V1x, int? V1y, int? V2x, int? V2y, int? V3x, int? V3y)
         {
+            try
+            {
+                if (!V1x.HasValue || !V1y.HasValue || !V2x.HasValue || !V2y.HasValue || !V3x.HasValue || !V3y.HasValue) return BadRequest();
 
-            if (!V1x.HasValue || !V1y.HasValue || !V2x.HasValue || !V2y.HasValue || !V3x.HasValue || !V3y.HasValue) return ""; 
-
-            return RowColumnService.CalculateRowColumn(V1x.Value, V1y.Value, V2x.Value, V2y.Value, V3x.Value, V3y.Value); 
+                return Ok(RowColumnService.CalculateRowColumn(V1x.Value, V1y.Value, V2x.Value, V2y.Value, V3x.Value, V3y.Value));
+            }
+            catch
+            {
+                return StatusCode(500);
+            }
         }
 
 

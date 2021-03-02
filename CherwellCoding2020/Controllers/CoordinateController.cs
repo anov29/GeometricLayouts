@@ -15,12 +15,18 @@ namespace CherwellCoding2020.Controllers
     {
 
         [HttpGet]
-        public List<Point> GetTriangle(char? row, int? column)
+        public IActionResult GetTriangle(char? row, int? column)
         {
+            try
+            {
+                if (!row.HasValue || !column.HasValue) return BadRequest();
 
-            if (!row.HasValue || !column.HasValue) return new List<Point>();
-            
-            return CoordinateService.CreateTriangle(row.Value, column.Value); 
+                return Ok(CoordinateService.CreateTriangle(row.Value, column.Value));
+            }
+            catch 
+            {
+                return StatusCode(500);
+            }
         }
     }
 }
