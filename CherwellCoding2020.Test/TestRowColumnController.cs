@@ -20,8 +20,11 @@ namespace CherwellCoding2020.Test
 
             result = controller.GetRowColumn(60, 60, 50, 60, 60, 50);
         
-            Assert.AreEqual("A12", result);  
+            Assert.AreEqual("A12", result);
 
+            result = controller.GetRowColumn(10, 20, 0, 20, 10, 10);
+
+            Assert.AreEqual("E2", result);
 
         }
     }

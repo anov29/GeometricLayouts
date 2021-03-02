@@ -29,6 +29,13 @@ namespace CherwellCoding2020.Test
             Assert.AreEqual(new Point(0, 10), result[1]); // upper right point
             Assert.AreEqual(new Point(10, 0), result[2]); // bottom right point 
 
+            // 4th row 
+            result = controller.GetTriangle('C', 3);
+
+            Assert.AreEqual(new Point(10, 30), result[0]); // bottom left point
+            Assert.AreEqual(new Point(10, 40), result[1]); // bottom right point
+            Assert.AreEqual(new Point(20, 30), result[2]); // bottom right point 
+
             // 6th row 
             result = controller.GetTriangle('A', 12);
 
