@@ -11,7 +11,6 @@ namespace CherwellCoding2020.Services
 
         private static int rowHeight = 6;
 
-
         public static List<Point> CreateTriangle(char row, int column)
         {
             List<Point> coordinates = new List<Point>();

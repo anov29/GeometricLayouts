@@ -34,7 +34,7 @@ namespace CherwellCoding2020.Services
         }
 
         // algorithm to map letters to correct column name 
-        // first maps the y coordinate from a scale of 0 - 5, with 5 = A, and 0 = F, and then adds 64 to map it to correct char 
+        // first maps the y coordinate from a scale of 0 - 5, with 0 = A, and 5 = F, and then adds 64 to map it to correct char 
         private static char MapLetter(int value)
         {
             int x = (((value / 10) - 6) * -1) + 64;
